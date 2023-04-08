@@ -1,4 +1,4 @@
-package mongo
+package mongodb
 
 import (
 	"context"
@@ -9,10 +9,11 @@ import (
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
-func ConnectDB(mongoUri string) *mongo.Client {
+func ConnectDB(mongoUri string) (*mongo.Client, error) {
 	client, err := mongo.NewClient(options.Client().ApplyURI(mongoUri))
 	if err != nil {
-		log.Fatal("cannot create a client", err)
+		log.Println("cannot create new client", err)
+		return nil, err
 	}
 	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
 
@@ -20,15 +21,17 @@ func ConnectDB(mongoUri string) *mongo.Client {
 
 	err = client.Connect(ctx)
 	if err != nil {
-		log.Fatal("cannot connect to DB", err)
+		log.Println("cannot connect to DB", err)
+		return nil, err
 	}
 
 	err = client.Ping(ctx, nil)
 	if err != nil {
-		log.Fatal("cannot ping to DB", err)
+		log.Println("cannot ping to DB", err)
+		return nil, err
 	}
 
-	return client
+	return client, nil
 }
 
 
