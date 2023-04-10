@@ -3,6 +3,7 @@ package utils
 import (
 	"log"
 	"os"
+	"time"
 
 	"github.com/spf13/viper"
 )
@@ -53,4 +54,8 @@ func OSLoadConfig() (config Config, err error) {
 	log.Println("SERVER_ADDRESS: ", config.ServerAddress)
 
 	return config, err
+}
+
+func GetTime() int32 {
+	return int32(time.Now().Unix())
 }

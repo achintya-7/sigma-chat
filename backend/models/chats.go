@@ -10,7 +10,7 @@ type Chat struct {
 }
 
 type Message struct {
-	Text   string `json:"text"`
-	Sender string `json:"sender"`
-	Time   int32  `json:"time"`
+	Text   string `json:"text" bson:"text"`
+	Sender string `json:"sender" bson:"sender"`
+	Time   int32  `json:"time" bson:"time"`
 }

@@ -49,6 +49,16 @@ func setupRoutes(server *Server) {
 	profile := r.Group("/profile")
 	profile.GET("/all/:username")
 	profile.GET("/:email")
+
+	chats := r.Group("/chats")
+	chats.GET("/:profile", server.getChats)
+	chats.POST("/", server.createNewChat)
+
+	messages := r.Group("/messages")
+	messages.GET("/:chatId", server.getMessages)
+	// we dont really need it as we can add a callback to the socketio callback
+	messages.POST("/", server.sendMessage)
+
 }
 
 func (server *Server) Start(serverAddress string) error {
