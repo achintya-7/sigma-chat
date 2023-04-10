@@ -46,3 +46,9 @@ func setupRoutes(server *Server) {
 func (server *Server) Start(serverAddress string) error {
 	return server.router.Run(serverAddress)
 }
+
+func errorResponse(err error) gin.H {
+	return gin.H{
+		"error": err.Error(),
+	}
+}

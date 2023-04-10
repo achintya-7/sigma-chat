@@ -9,7 +9,7 @@ import (
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
-func ConnectDB(mongoUri string) (*mongo.Client, error) {
+func ConnectDB(mongoUri string, dbName string) (*mongo.Client, error) {
 	client, err := mongo.NewClient(options.Client().ApplyURI(mongoUri))
 	if err != nil {
 		log.Println("cannot create new client", err)
@@ -30,6 +30,8 @@ func ConnectDB(mongoUri string) (*mongo.Client, error) {
 		log.Println("cannot ping to DB", err)
 		return nil, err
 	}
+
+	createIndex(client, dbName)
 
 	return client, nil
 }

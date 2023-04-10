@@ -15,7 +15,7 @@ func main() {
 		log.Fatal("error loading config: ", err)
 	}
 
-	mongoClient, err := mongodb.ConnectDB(config.MongoUri)
+	mongoClient, err := mongodb.ConnectDB(config.MongoUri, config.DBName)
 	if err != nil {
 		log.Fatal("error connecting to DB: ", err)
 	}
