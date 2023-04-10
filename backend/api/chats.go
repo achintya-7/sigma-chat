@@ -53,7 +53,7 @@ type getChat struct {
 	profile string `uri:"profile" binding:"required"`
 }
 
-func (server *Server) getChat(c *gin.Context) {
+func (server *Server) getChats(c *gin.Context) {
 	var resp []models.Chat
 	var req getChat
 	if err := c.ShouldBindUri(&req); err != nil {
@@ -82,3 +82,6 @@ func (server *Server) getChat(c *gin.Context) {
 
 	c.JSON(http.StatusOK, resp)
 }
+
+
+
