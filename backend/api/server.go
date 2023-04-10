@@ -19,8 +19,8 @@ func NewServer(config utils.Config, client *mongo.Client) *Server {
 	collection := mongodb.NewCollection(client, config)
 
 	server := &Server{
-		config: config,
-		client: client,
+		config:     config,
+		client:     client,
 		collection: collection,
 	}
 
@@ -32,7 +32,7 @@ func NewServer(config utils.Config, client *mongo.Client) *Server {
 func setupRoutes(server *Server) {
 	r := gin.Default()
 
-	defer func()  {
+	defer func() {
 		server.router = r
 	}()
 
@@ -41,6 +41,10 @@ func setupRoutes(server *Server) {
 			"Hi Human!": "Welcome to Sigma Chat",
 		})
 	})
+
+	auth := r.Group("/auth")
+	auth.POST("/signup", server.signUp)
+	auth.POST("/login", server.login)
 }
 
 func (server *Server) Start(serverAddress string) error {
