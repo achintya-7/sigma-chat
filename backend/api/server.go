@@ -45,6 +45,10 @@ func setupRoutes(server *Server) {
 	auth := r.Group("/auth")
 	auth.POST("/signup", server.signUp)
 	auth.POST("/login", server.login)
+
+	profile := r.Group("/profile")
+	profile.GET("/all/:username")
+	profile.GET("/:email")
 }
 
 func (server *Server) Start(serverAddress string) error {

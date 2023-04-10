@@ -10,7 +10,7 @@ import (
 	"golang.org/x/crypto/bcrypt"
 )
 
-type signUp struct {
+type SignUp struct {
 	Username string `json:"username" binding:"required"`
 	Password string `json:"password" binding:"required"`
 	Email    string `json:"email" binding:"required"`
@@ -18,7 +18,7 @@ type signUp struct {
 }
 
 func (server *Server) signUp(c *gin.Context) {
-	var req signUp
+	var req SignUp
 	if err := c.ShouldBindJSON(&req); err != nil {
 		c.JSON(http.StatusBadRequest, errorResponse(err))
 		return
@@ -53,7 +53,7 @@ type login struct {
 
 func (server *Server) login(c *gin.Context) {
 	var req login
-	var user signUp
+	var user SignUp
 
 	if err := c.ShouldBindJSON(&req); err != nil {
 		c.JSON(http.StatusBadRequest, errorResponse(err))
