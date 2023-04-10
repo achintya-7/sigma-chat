@@ -36,9 +36,9 @@ func setupRoutes(server *Server) {
 		server.router = r
 	}()
 
-	r.GET("/ping", func(c *gin.Context) {
+	r.GET("/", func(c *gin.Context) {
 		c.JSON(200, gin.H{
-			"message": "pong",
+			"Hi Human!": "Welcome to Sigma Chat",
 		})
 	})
 }

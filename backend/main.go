@@ -9,7 +9,8 @@ import (
 )
 
 func main() {
-	config, err := utils.LoadConfig(".")
+	// config, err := utils.LoadConfig(".")
+	config, err := utils.OSLoadConfig()
 	if err != nil {
 		log.Fatal("error loading config: ", err)
 	}

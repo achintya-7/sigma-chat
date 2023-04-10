@@ -1,0 +1,26 @@
+version: '3.9'
+services:
+  mongodb:
+    image: mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - ./data:/data/db
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=secret
+    command: --auth
+
+  api:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "12345:12345"
+    environment:
+      - MONGO_URI=mongodb://root:secret@mongodb:27017/
+      - DB_NAME=sigma
+      - SERVER_ADDRESS=:12345
+    depends_on:
+      - mongodb
+    
