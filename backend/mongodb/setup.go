@@ -36,4 +36,6 @@ func ConnectDB(mongoUri string, dbName string) (*mongo.Client, error) {
 	return client, nil
 }
 
-
+func NewMockClient() *mongo.Client {
+	return nil
+}

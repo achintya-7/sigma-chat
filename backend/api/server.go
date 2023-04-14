@@ -1,7 +1,10 @@
 package api
 
 import (
+	"log"
+
 	"github.com/achintya-7/sigma-chat/mongodb"
+	"github.com/achintya-7/sigma-chat/sockets"
 	"github.com/achintya-7/sigma-chat/utils"
 	"github.com/gin-gonic/gin"
 	"go.mongodb.org/mongo-driver/mongo"
@@ -19,8 +22,8 @@ func NewServer(config utils.Config, client *mongo.Client) *Server {
 	collection := mongodb.NewCollection(client, config)
 
 	server := &Server{
-		config:     config,
-		client:     client,
+		config: config,
+		client: client,
 		collection: collection,
 	}
 
@@ -31,12 +34,19 @@ func NewServer(config utils.Config, client *mongo.Client) *Server {
 
 func setupRoutes(server *Server) {
 	r := gin.Default()
+	socketServer := sockets.Setup()
+
+	go func() {
+		if err := socketServer.Serve(); err != nil {
+			log.Fatalf("socketio listen error: %s\n", err)
+		}
+	}()
 
 	defer func() {
 		server.router = r
 	}()
 
-	r.GET("/", func(c *gin.Context) {
+	r.GET("/ping", func(c *gin.Context) {
 		c.JSON(200, gin.H{
 			"Hi Human!": "Welcome to Sigma Chat",
 		})
@@ -59,9 +69,12 @@ func setupRoutes(server *Server) {
 	// we dont really need it as we can add a callback to the socketio callback
 	messages.POST("/", server.sendMessage)
 
+	r.GET("/socket.io/*any", gin.WrapH(socketServer))
+	r.POST("/socket.io/*any", gin.WrapH(socketServer))
 }
 
 func (server *Server) Start(serverAddress string) error {
+	log.Printf("Server starting ")
 	return server.router.Run(serverAddress)
 }
 
