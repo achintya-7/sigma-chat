@@ -5,11 +5,17 @@ import (
 
 	"github.com/achintya-7/sigma-chat/api"
 	"github.com/achintya-7/sigma-chat/mongodb"
+	"github.com/achintya-7/sigma-chat/sockets"
 	"github.com/achintya-7/sigma-chat/utils"
 )
 
 func main() {
-	// config, err := utils.LoadConfig(".")
+	debug := true
+
+	if debug {
+		sockets.Start()
+	} else {
+		// config, err := utils.LoadConfig(".")
 	config, err := utils.OSLoadConfig()
 	if err != nil {
 		log.Fatal("error loading config: ", err)
@@ -29,5 +35,8 @@ func main() {
 	if err != nil {
 		log.Fatal("cannot start server", err)
 	}
+	}
+
+	
 
 }

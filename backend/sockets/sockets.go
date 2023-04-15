@@ -12,6 +12,7 @@ func Setup() *socketio.Server {
 	server := socketio.NewServer(nil)
 
 	server.OnConnect("/", func(s socketio.Conn) error {
+		log.Println("connected:", s.ID())
 		return nil
 	})
 
