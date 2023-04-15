@@ -17,6 +17,7 @@ func Setup() *socketio.Server {
 	})
 
 	server.OnEvent("/", "join", func(s socketio.Conn, msg string) {
+		log.Println("join : ", msg)
 		s.Join(msg)
 	})
 
