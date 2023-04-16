@@ -53,7 +53,7 @@ class ChatWidgets{
               textCapitalization: TextCapitalization.sentences,
               onChanged: (value) {},
               decoration: const InputDecoration.collapsed(
-                hintText: "...",
+                hintText: null,
               ),
             ),
           ),
