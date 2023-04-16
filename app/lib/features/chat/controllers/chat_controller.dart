@@ -15,7 +15,7 @@ class ChatController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    // testermessages();
+    testermessages();
     connectSocket();
   }
 
