@@ -2,8 +2,8 @@
 
 import 'dart:convert';
 
-import 'package:app/models/chats/chats.dart';
 import 'package:app/models/send/send.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:socket_io_client/socket_io_client.dart' as io;
 
@@ -46,6 +46,7 @@ class ChatController extends GetxController {
       });
     } on Exception catch (e) {
       print(e);
+      Fluttertoast.showToast(msg: "Error connecting to socket");
     }
 
     toogleLoading();
