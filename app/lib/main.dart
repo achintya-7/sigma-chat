@@ -1,6 +1,7 @@
+import 'package:app/features/auth/views/sign_in_page.dart';
+import 'package:app/features/auth/views/sign_up_page.dart';
 import 'package:app/features/chat/bindings/chat_bindings.dart';
 import 'package:app/features/chat/views/chat_page.dart';
-import 'package:app/features/home/views/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
 
@@ -17,9 +18,10 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      initialRoute: '/chat',
+      initialRoute: '/signIn',
       getPages: [
-        GetPage(name: '/home', page: () => HomePage()),
+        GetPage(name: '/signIn', page: () => AuthPage()),
+        GetPage(name: '/signUp', page: () => SignUpPage()),
         GetPage(name: '/chat', page: () => ChatPage(), binding: ChatBindings()),
       ],
     );

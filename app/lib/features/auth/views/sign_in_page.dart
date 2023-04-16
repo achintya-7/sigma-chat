@@ -1,8 +1,9 @@
-import 'package:app/features/home/widgets/text_field.dart';
+import 'package:app/features/auth/widgets/text_field.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
-class HomePage extends StatelessWidget {
-  HomePage({super.key});
+class AuthPage extends StatelessWidget {
+  AuthPage({super.key});
 
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
@@ -55,7 +56,9 @@ class HomePage extends StatelessWidget {
               ),
               const SizedBox(height: 25),
               ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  Get.offNamedUntil('/chat', (route) => false);
+                },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.black,
                   elevation: 5,
@@ -73,7 +76,9 @@ class HomePage extends StatelessWidget {
                   const Text('Not a member?'),
                   const SizedBox(width: 5),
                   GestureDetector(
-                    onTap: () {},
+                    onTap: () {
+                      Get.toNamed('/signUp');
+                    },
                     child: const Text(
                       'Sign Up',
                       style: TextStyle(
