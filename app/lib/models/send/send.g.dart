@@ -8,10 +8,10 @@ part of 'send.dart';
 
 _$_Send _$$_SendFromJson(Map<String, dynamic> json) => _$_Send(
       room: json['room'] as String,
-      chat: Chat.fromJson(json['chat'] as Map<String, dynamic>),
+      msg: json['msg'] as String,
     );
 
 Map<String, dynamic> _$$_SendToJson(_$_Send instance) => <String, dynamic>{
       'room': instance.room,
-      'chat': instance.chat,
+      'msg': instance.msg,
     };

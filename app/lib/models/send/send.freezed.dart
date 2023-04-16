@@ -21,7 +21,7 @@ Send _$SendFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Send {
   String get room => throw _privateConstructorUsedError;
-  Chat get chat => throw _privateConstructorUsedError;
+  String get msg => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -33,9 +33,7 @@ abstract class $SendCopyWith<$Res> {
   factory $SendCopyWith(Send value, $Res Function(Send) then) =
       _$SendCopyWithImpl<$Res, Send>;
   @useResult
-  $Res call({String room, Chat chat});
-
-  $ChatCopyWith<$Res> get chat;
+  $Res call({String room, String msg});
 }
 
 /// @nodoc
@@ -52,26 +50,18 @@ class _$SendCopyWithImpl<$Res, $Val extends Send>
   @override
   $Res call({
     Object? room = null,
-    Object? chat = null,
+    Object? msg = null,
   }) {
     return _then(_value.copyWith(
       room: null == room
           ? _value.room
           : room // ignore: cast_nullable_to_non_nullable
               as String,
-      chat: null == chat
-          ? _value.chat
-          : chat // ignore: cast_nullable_to_non_nullable
-              as Chat,
+      msg: null == msg
+          ? _value.msg
+          : msg // ignore: cast_nullable_to_non_nullable
+              as String,
     ) as $Val);
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ChatCopyWith<$Res> get chat {
-    return $ChatCopyWith<$Res>(_value.chat, (value) {
-      return _then(_value.copyWith(chat: value) as $Val);
-    });
   }
 }
 
@@ -81,10 +71,7 @@ abstract class _$$_SendCopyWith<$Res> implements $SendCopyWith<$Res> {
       __$$_SendCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String room, Chat chat});
-
-  @override
-  $ChatCopyWith<$Res> get chat;
+  $Res call({String room, String msg});
 }
 
 /// @nodoc
@@ -97,17 +84,17 @@ class __$$_SendCopyWithImpl<$Res> extends _$SendCopyWithImpl<$Res, _$_Send>
   @override
   $Res call({
     Object? room = null,
-    Object? chat = null,
+    Object? msg = null,
   }) {
     return _then(_$_Send(
       room: null == room
           ? _value.room
           : room // ignore: cast_nullable_to_non_nullable
               as String,
-      chat: null == chat
-          ? _value.chat
-          : chat // ignore: cast_nullable_to_non_nullable
-              as Chat,
+      msg: null == msg
+          ? _value.msg
+          : msg // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -115,18 +102,18 @@ class __$$_SendCopyWithImpl<$Res> extends _$SendCopyWithImpl<$Res, _$_Send>
 /// @nodoc
 @JsonSerializable()
 class _$_Send implements _Send {
-  _$_Send({required this.room, required this.chat});
+  _$_Send({required this.room, required this.msg});
 
   factory _$_Send.fromJson(Map<String, dynamic> json) => _$$_SendFromJson(json);
 
   @override
   final String room;
   @override
-  final Chat chat;
+  final String msg;
 
   @override
   String toString() {
-    return 'Send(room: $room, chat: $chat)';
+    return 'Send(room: $room, msg: $msg)';
   }
 
   @override
@@ -135,12 +122,12 @@ class _$_Send implements _Send {
         (other.runtimeType == runtimeType &&
             other is _$_Send &&
             (identical(other.room, room) || other.room == room) &&
-            (identical(other.chat, chat) || other.chat == chat));
+            (identical(other.msg, msg) || other.msg == msg));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, room, chat);
+  int get hashCode => Object.hash(runtimeType, room, msg);
 
   @JsonKey(ignore: true)
   @override
@@ -157,7 +144,7 @@ class _$_Send implements _Send {
 }
 
 abstract class _Send implements Send {
-  factory _Send({required final String room, required final Chat chat}) =
+  factory _Send({required final String room, required final String msg}) =
       _$_Send;
 
   factory _Send.fromJson(Map<String, dynamic> json) = _$_Send.fromJson;
@@ -165,7 +152,7 @@ abstract class _Send implements Send {
   @override
   String get room;
   @override
-  Chat get chat;
+  String get msg;
   @override
   @JsonKey(ignore: true)
   _$$_SendCopyWith<_$_Send> get copyWith => throw _privateConstructorUsedError;

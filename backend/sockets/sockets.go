@@ -29,9 +29,15 @@ func Setup() *socketio.Server {
 			return
 		}
 
+		log.Println("send : ", req)
+
 		ok := server.BroadcastToRoom("/", req.Room, "message", req.Msg); if !ok {
 			log.Println("failed to broadcast, err : ", err)
 		}
+	})
+
+	server.OnDisconnect("/", func(s socketio.Conn, msg string) {
+		log.Println("closed", msg)
 	})
 
 	return server

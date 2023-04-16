@@ -1,4 +1,3 @@
-import 'package:app/models/chats/chats.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'send.freezed.dart';
@@ -8,7 +7,7 @@ part 'send.g.dart';
 class Send with _$Send {
   factory Send({
     required String room,
-    required Chat chat,
+    required String msg,
   }) = _Send;
 
   factory Send.fromJson(Map<String, dynamic> json) => _$SendFromJson(json);
